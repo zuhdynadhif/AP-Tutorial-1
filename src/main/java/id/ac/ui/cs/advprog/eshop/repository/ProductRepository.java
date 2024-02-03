@@ -32,6 +32,10 @@ public class ProductRepository {
         return productData.iterator();
     }
 
+    public Product findById(String productId) {
+        return productData.stream().filter(product -> product.getProductId().equals(productId)).findFirst().orElse(null);
+    }
+
 
     public void delete(String productId) {
         productData.removeIf(product -> product.getProductId().equals(productId));
