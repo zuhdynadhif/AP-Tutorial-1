@@ -69,4 +69,16 @@ class ProductRepositoryTest {
         assertEquals(product2.getProductName(), savedProduct.getProductName());
         assertEquals(product2.getProductQuantity(), savedProduct.getProductQuantity());
     }
+
+    @Test
+    void testDelete() {
+        Product product = new Product();
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        productRepository.delete(product.getProductId());
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
 }
