@@ -24,7 +24,6 @@ class ProductRepositoryTest {
     @Test
     void testCreateAndFind() {
         Product product = new Product();
-        product.setProductId("kdasl3432-234hlk2-2kljklrj-lkwje-lksefs");
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(100);
         productRepository.create(product);
@@ -46,13 +45,11 @@ class ProductRepositoryTest {
     @Test
     void testFindAllIfMoreThanOneProduct() {
         Product product1 = new Product();
-        product1.setProductId("kdasl3432-234hlk2-2kljklrj-lkwje-lksefs");
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(100);
         productRepository.create(product1);
 
         Product product2 = new Product();
-        product2.setProductId("kdasl3432-234hlk2-2kljklrj-lkwje-lksefs");
         product2.setProductName("Sampo Cap Bambang");
         product2.setProductQuantity(50);
         productRepository.create(product2);
