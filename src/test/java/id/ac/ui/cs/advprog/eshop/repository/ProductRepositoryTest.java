@@ -102,4 +102,17 @@ class ProductRepositoryTest {
         assertEquals(editedProduct.getProductName(), savedProduct.getProductName());
         assertEquals(editedProduct.getProductQuantity(), savedProduct.getProductQuantity());
     }
+
+    @Test
+    void testFindById() {
+        Product product = new Product();
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product savedProduct = productRepository.findById(product.getProductId());
+        assertEquals(product.getProductId(), savedProduct.getProductId());
+        assertEquals(product.getProductName(), savedProduct.getProductName());
+        assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
+    }
 }
