@@ -74,3 +74,15 @@ Saya menemukan beberapa kekurangan dalam kode yang saya buat, yaitu:
     ```
    Pada kode di atas, saya melakukan set atribut yang menjadi primary key yaitu productId. Sehingga ketika saya ingin
    mengubah product, saya bisa mencari product berdasarkan productId dengan menggunakan method `findById()`
+
+### Refleksi 2
+
+1. After writing the unit test, how do you feel? How many unit tests should be made in a class? How to make sure that our unit tests are enough to verify our program? It would be good if you learned about code coverage. Code coverage is a metric that can help you understand how much of your source is tested. If you have 100% code coverage, does that mean your code has no bugs or errors? 
+
+menurut saya unit test yang harus dibuat sebanyak mungkin hingga memenuhi semua case yang ada
+
+2. Suppose that after writing the CreateProductFunctionalTest.java along with the corresponding test case, you were asked to create another functional test suite that verifies the number of items in the product list. You decided to create a new Java class similar to the prior functional test suites with the same setup procedures and instance variables.    
+
+3. What do you think about the cleanliness of the code of the new functional test suite? Will the new code reduce the code quality? Identify the potential clean code issues, explain the reasons, and suggest possible improvements to make the code cleaner! Please write your reflection inside the repository's README.md file.
+
+code cleanliness harus diterapkan di seluruh bagian code project yang ada. Potensi terbesar kesalah menulis kode adalah pada pemberian variabel
