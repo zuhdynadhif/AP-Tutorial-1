@@ -86,3 +86,14 @@ menurut saya unit test yang harus dibuat sebanyak mungkin hingga memenuhi semua 
 3. What do you think about the cleanliness of the code of the new functional test suite? Will the new code reduce the code quality? Identify the potential clean code issues, explain the reasons, and suggest possible improvements to make the code cleaner! Please write your reflection inside the repository's README.md file.
 
 code cleanliness harus diterapkan di seluruh bagian code project yang ada. Potensi terbesar kesalah menulis kode adalah pada pemberian variabel
+
+
+### Module 2: Refleksi
+
+#### 1. List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
+   
+   Salah satu isu kode yang saya temukan adalah set Id dari product yang saya miliki. Ketika membuat unit test, saya bingung karena ketika menggunakan mock, saya tidak tahu apakah ID berhasil dibuat atau tidak. Lalu ssaya memperbaiki unit test sehingga bisa melakukan setId pada product yang digunakan.
+
+#### 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
+
+   Saya menggunakan GitHub Actions untuk melakukan CI/CD. Saya rasa implementasi yang saya lakukan sudah memenuhi definisi CI/CD. Karena setiap kali saya melakukan push ke branch master, maka akan dilakukan build dan test. Jika build dan test berhasil, maka akan dilakukan deploy ke server. Hal ini memenuhi definisi CI/CD yaitu melakukan build, test, dan deploy secara otomatis setiap kali ada perubahan pada kode.
