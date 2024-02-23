@@ -58,16 +58,12 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
       - name: set Gradle as executable
         run: chmod +x ./gradlew
-      - name: Chace Gradle packages
+      - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-  analysis:
-    name: Analyze with SonarCloud
-    runs-on: ubuntu-latest
-    steps:
       - name: Analyze Code
         # You can pin the exact commit or the version.
         env:
