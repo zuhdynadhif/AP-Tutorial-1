@@ -158,12 +158,12 @@
             <tbody>
             <tr th:each="product, iterStat: ${products}">
                 <th class="data" scope="row" th:text="${iterStat.count}"></th>
-                <td class="data name" th:text="${product.productName}"></td>
-                <td class="data quantity" th:text="${product.productQuantity}"></td>
+                <td class="data name" th:text="${product.name}"></td>
+                <td class="data quantity" th:text="${product.quantity}"></td>
                 <td class="data">
-                    <a th:href="@{'/product/edit/' + ${product.productId}}"
+                    <a th:href="@{'/product/edit/' + ${product.id}}"
                        class="btn btn-danger btn-sm">Edit</a>
-                    <a th:href="@{'/product/delete/' + ${product.productId}}"
+                    <a th:href="@{'/product/delete/' + ${product.id}}"
                        class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
