@@ -61,17 +61,17 @@ class ProductControllerTest {
     @Test
     void testDeleteProduct() {
         Product product = new Product();
-        String productId = product.getProductId();
+        String productId = product.getId();
         String expectedViewName = "redirect:/product/list";
         String actualViewName = productController.deleteProduct(productId);
         assertEquals(expectedViewName, actualViewName);
-        verify(productService, times(1)).delete(productId);
+        verify(productService, times(1)).deleteById(productId);
     }
     //
     @Test
     void testEditProductPage() {
         Product product = new Product();
-        String productId = product.getProductId();
+        String productId = product.getId();
         when(productService.findById(productId)).thenReturn(product);
 
         String expectedViewName = "EditProduct";
@@ -84,8 +84,8 @@ class ProductControllerTest {
     void testEditProductPost() {
         Product product = new Product();
         String expectedViewName = "redirect:/product/list";
-        String actualViewName = productController.editProductPost(product, product.getProductId());
+        String actualViewName = productController.editProductPost(product, product.getId());
         assertEquals(expectedViewName, actualViewName);
-        verify(productService, times(1)).edit(product);
+        verify(productService, times(1)).update(product.getId(), product);
     }
 }

@@ -16,33 +16,33 @@ class ProductServiceTest {
     @Test
     void createTest(){
         Product product = new Product();
-        product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(100);
+        product.setName("Sampo Cap Bambang");
+        product.setQuantity(100);
         productService.create(product);
-        assertNotNull(productService.findById(product.getProductId()));
+        assertNotNull(productService.findById(product.getId()));
     }
 
     @Test
     void editTest(){
         Product product = new Product();
-        product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(100);
+        product.setName("Sampo Cap Bambang");
+        product.setQuantity(100);
         productService.create(product);
-        product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(50);
-        productService.edit(product);
-        assertEquals(50, productService.findById(product.getProductId()).getProductQuantity());
+        product.setName("Sampo Cap Bambang");
+        product.setQuantity(50);
+        productService.update(product.getId(), product);
+        assertEquals(50, productService.findById(product.getId()).getQuantity());
     }
 
     @Test
     void findAllTest(){
         Product product1 = new Product();
-        product1.setProductName("Sampo Cap Bambang");
-        product1.setProductQuantity(100);
+        product1.setName("Sampo Cap Bambang");
+        product1.setQuantity(100);
         productService.create(product1);
         Product product2 = new Product();
-        product2.setProductName("Sampo Cap Bambang");
-        product2.setProductQuantity(50);
+        product2.setName("Sampo Cap Bambang");
+        product2.setQuantity(50);
         productService.create(product2);
         assertEquals(2, productService.findAll().size());
     }
@@ -50,19 +50,19 @@ class ProductServiceTest {
     @Test
     void findByIdTest(){
         Product product = new Product();
-        product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(100);
+        product.setName("Sampo Cap Bambang");
+        product.setQuantity(100);
         productService.create(product);
-        assertNotNull(productService.findById(product.getProductId()));
+        assertNotNull(productService.findById(product.getId()));
     }
 
     @Test
     void deleteTest(){
         Product product = new Product();
-        product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(100);
+        product.setName("Sampo Cap Bambang");
+        product.setQuantity(100);
         productService.create(product);
-        productService.delete(product.getProductId());
-        assertNull(productService.findById(product.getProductId()));
+        productService.deleteById(product.getId());
+        assertNull(productService.findById(product.getId()));
     }
 }
