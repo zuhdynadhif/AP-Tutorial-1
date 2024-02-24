@@ -5,6 +5,8 @@ Advanced Programming B
 ## Table of Content
 
 1. [Refleksi 1](#refleksi-1)
+2. [Refleksi 2](#refleksi-2)
+3. [Refleksi 3](#refleksi-3)
 
 ## Refleksi 1
 
@@ -97,3 +99,28 @@ code cleanliness harus diterapkan di seluruh bagian code project yang ada. Poten
 #### 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
 
    Saya menggunakan GitHub Actions untuk melakukan CI/CD. Saya rasa implementasi yang saya lakukan sudah memenuhi definisi CI/CD. Karena setiap kali saya melakukan push ke branch master, maka akan dilakukan build dan test. Jika build dan test berhasil, maka akan dilakukan deploy ke server. Hal ini memenuhi definisi CI/CD yaitu melakukan build, test, dan deploy secara otomatis setiap kali ada perubahan pada kode.
+
+### Refleksi 3
+#### 1. Explain what principles you apply to your project!
+
+   Saya menerapkan beberapa SOLID principle sebagai berikut:
+   
+   a. **Single Responsibility Principle**<br>
+   Saya memisahkan controller untuk Product dan Car dalam file terpisah. Dengan begitu, setiap file controller bertanggung jawab atas 1 objek berbeda.
+   
+   b. **Open/Closed Principle**<br>
+   Saya membuat class baru yang dapat menjadi superclass dari Product dan Car, hal ini memungkinkan karena kedua model tersebut memiliki beberapa atribut yang serupa.
+
+   c. **Liskov Substitution Principle**<br>
+   Saya membuat interface untuk repository, sehingga ketika saya ingin mengganti repository, saya hanya perlu mengganti implementasi dari interface tersebut.
+
+   d. **Dependency Inversion Principle**<br>
+   Saya memanfaatkan beberapa dependency injection yang disediakan oleh Spring Boot, sehingga saya tidak perlu membuat object secara manual.
+
+#### 2. Explain the advantages of applying SOLID principles to your project with examples.
+
+   Kedepannya, saya bisa lebih mudah dalam melakukan perubahan pada kode saya. Misalnya, jika saya ingin menambahkan fitur baru yang terkait dengan Car model, saya bisa membuatnya tanpa perlu melakukan perubahan pada fitur Product, sebaliknya, bahkan jika saya ingin mengubah keduanya, saya bisa melakukannya pada abstract class Entity. Selain itu, saya bisa lebih mudah dalam melakukan test pada kode saya, karena kode saya sudah terpisah-pisah dan tidak saling bergantung satu sama lain.
+
+#### 3. Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+   Jika saya tidak menerapkan SOLID principles, maka saya akan kesulitan dalam melakukan perubahan pada kode saya. Misalnya, jika saya ingin menambahkan fitur baru yang terkait dengan Car model, saya harus melakukan perubahan pada code yang berkaitan dengan Car saja, padahal seharusnya saya juga melakukan perubahan pada Product karena memiliki kesamaan.
