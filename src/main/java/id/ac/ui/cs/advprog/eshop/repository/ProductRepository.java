@@ -9,22 +9,24 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class ProductRepository {
+public class ProductRepository implements EntityRepository<Product> {
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product) {
-        product.setProductId(String.valueOf(UUID.randomUUID()));
+        product.setId(String.valueOf(UUID.randomUUID()));
         productData.add(product);
         return product;
     }
 
-    public void edit(Product product) {
-        productData.forEach(p -> {
-            if (p.getProductId().equals(product.getProductId())) {
-                p.setProductName(product.getProductName());
-                p.setProductQuantity(product.getProductQuantity());
+    public Product update(String productId, Product updatedProduct) {
+        for (Product p : productData){
+            if (p.getId().equals(productId)){
+                p.setName(updatedProduct.getName());
+                p.setQuantity(updatedProduct.getQuantity());
+                return p;
             }
-        });
+        }
+        return null;
     }
 
 
@@ -33,11 +35,11 @@ public class ProductRepository {
     }
 
     public Product findById(String productId) {
-        return productData.stream().filter(product -> product.getProductId().equals(productId)).findFirst().orElse(null);
+        return productData.stream().filter(product -> product.getId().equals(productId)).findFirst().orElse(null);
     }
 
 
     public void delete(String productId) {
-        productData.removeIf(product -> product.getProductId().equals(productId));
+        productData.removeIf(product -> product.getId().equals(productId));
     }
 }
