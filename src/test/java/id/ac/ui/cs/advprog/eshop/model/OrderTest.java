@@ -2,12 +2,14 @@ package id.ac.ui.cs.advprog.eshop.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 public class OrderTest {
     private List<Product> products;
 
@@ -47,7 +49,7 @@ public class OrderTest {
         assertEquals("13652556-0128-4c07-b546-54eb1396d79b", order.getId());
         assertEquals(1708560000L, order.getOrderTime());
         assertEquals("Safira Sudrajat", order.getAuthor());
-        assertEquals("WAITING_PAYMENT", order.getStatus();
+        assertEquals("WAITING_PAYMENT", order.getStatus());
     }
 
     @Test
@@ -62,8 +64,9 @@ public class OrderTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order("13652556-0128-4c07-b546-54eb1396d79b",
                     this.products, 1708560000L, "Safira Sudrajat", "MEOW");
-        })
+        });
     }
+
 
     @Test
     void testSetStatusToCancelled() {
