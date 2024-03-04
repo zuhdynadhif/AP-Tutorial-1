@@ -33,7 +33,7 @@ class OrderRepositoryTest {
         orders.add(order1);
         Order order2 = new Order("2", products, 1708570000L, "Safira Sudrajat");
         orders.add(order2);
-        Order order3 = new Order("3", products, 1708580000L, "Safira Sudrajat");
+        Order order3 = new Order("3", products, 1708580000L, "Bambang Sudrajat");
         orders.add(order3);
     }
 
