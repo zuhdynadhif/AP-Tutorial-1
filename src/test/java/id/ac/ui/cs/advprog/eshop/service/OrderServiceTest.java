@@ -6,17 +6,19 @@ import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.repository.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class OrderServiceTest {
     @InjectMocks
     OrderServiceImpl orderService;
@@ -87,11 +89,9 @@ public class OrderServiceTest {
 
     @Test
     void testUpdateStatusInvalidOrderId() {
-        Order order = orders.get(1);
-        doReturn(order).when(orderRepository).findById(order.getId());
 
-        assertThrows(IllegalArgumentException.class,
-                () -> orderService.updateStatus("NGASAL", order.getStatus()));
+        assertThrows(NoSuchElementException.class,
+                () -> orderService.updateStatus("NGASAL", OrderStatus.SUCCESS.getValue()));
         verify(orderRepository, times(0)).save(any(Order.class));
     }
 
@@ -106,17 +106,14 @@ public class OrderServiceTest {
 
     @Test
     void testFindByIdIfNotFound() {
-        Order order = orders.get(1);
-        doReturn(order).when(orderRepository).findById(order.getId());
-
-        Order result = orderService.findById("NGASAL");
-        assertNull(result);
+        doReturn(null).when(orderRepository).findById("zczc");
+        assertNull(orderService.findById("zczc"));
     }
 
     @Test
     void testFindAllByAuthorIfAuthorCorrect() {
         Order order = orders.get(1);
-        doReturn(order).when(orderRepository).findById(order.getId());
+        doReturn(orders).when(orderRepository).findAllByAuthor(order.getAuthor());
 
         List<Order> results = orderService.findAllByAuthor(order.getAuthor());
         for (Order result : results) {
@@ -128,7 +125,7 @@ public class OrderServiceTest {
     @Test
     void testFindAllByAuthorIfAllLowercase() {
         Order order = orders.get(1);
-        doReturn(order).when(orderRepository).findById(order.getId());
+        doReturn(new ArrayList<Order>()).when(orderRepository).findAllByAuthor(order.getAuthor().toLowerCase());
 
         List<Order> results = orderService.findAllByAuthor(order.getAuthor().toLowerCase());
         for (Order result : results) {
