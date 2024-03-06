@@ -23,7 +23,7 @@ class PaymentRepositoryTest {
                 Map.of(PaymentMethod.VOUCHER_CODE.getValue(), "ESHOP1234ABC5678"));
         payments.add(payment1);
         Payment payment2 = new Payment("2", PaymentMethod.BANK_TRANSFER.getValue(),
-                Map.of("BRI", "1234567890"));
+                Map.of("bankName", "BRI", "referenceCode", "1234567890"));
         payments.add(payment2);
     }
 
@@ -37,8 +37,10 @@ class PaymentRepositoryTest {
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
         assertEquals(payment.getPaymentData().keySet(), findResult.getPaymentData().keySet());
-        assertEquals(payment.getPaymentData().get("BRI"),
-                findResult.getPaymentData().get("BRI"));
+        assertEquals(payment.getPaymentData().get("bankName"),
+                findResult.getPaymentData().get("bankName"));
+        assertEquals(payment.getPaymentData().get("referenceCode"),
+                findResult.getPaymentData().get("referenceCode"));
         assertEquals(payment.getStatus(), findResult.getStatus());
     }
 
@@ -55,8 +57,10 @@ class PaymentRepositoryTest {
         assertEquals(payment.getId(), findResult.getId());
         assertEquals(payment.getMethod(), findResult.getMethod());
         assertEquals(payment.getPaymentData().keySet(), findResult.getPaymentData().keySet());
-        assertEquals(payment.getPaymentData().get("BRI"),
-                findResult.getPaymentData().get("BRI"));
+        assertEquals(payment.getPaymentData().get("bankName"),
+                findResult.getPaymentData().get("bankName"));
+        assertEquals(payment.getPaymentData().get("referenceCode"),
+                findResult.getPaymentData().get("referenceCode"));
         assertEquals(PaymentStatus.SUCCESS.getValue(), findResult.getStatus());
     }
 
@@ -71,8 +75,10 @@ class PaymentRepositoryTest {
         assertEquals(payments.get(1).getMethod(), findResult.getMethod());
         assertEquals(payments.get(1).getPaymentData().keySet(),
                 findResult.getPaymentData().keySet());
-        assertEquals(payments.get(1).getPaymentData().get("BRI"),
-                findResult.getPaymentData().get("BRI"));
+        assertEquals(payments.get(1).getPaymentData().get("bankName"),
+                findResult.getPaymentData().get("bankName"));
+        assertEquals(payments.get(1).getPaymentData().get("referenceCode"),
+                findResult.getPaymentData().get("referenceCode"));
         assertEquals(payments.get(1).getStatus(), findResult.getStatus());
     }
 
