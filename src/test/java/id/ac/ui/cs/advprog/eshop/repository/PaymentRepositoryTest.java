@@ -91,4 +91,13 @@ class PaymentRepositoryTest {
         Payment findResult = paymentRepository.findById("wkwk");
         assertNull(findResult);
     }
+    @Test
+    void testFindAll() {
+        for (Payment payment : payments) {
+            paymentRepository.save(payment);
+        }
+
+        List<Payment> findResult = paymentRepository.findAll();
+        assertEquals(payments.size(), findResult.size());
+    }
 }
