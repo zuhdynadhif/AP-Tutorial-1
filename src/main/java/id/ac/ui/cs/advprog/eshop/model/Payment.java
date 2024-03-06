@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
-import enums.OrderStatus;
+import enums.PaymentMethod;
+import enums.PaymentStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +17,12 @@ public class Payment {
 
     public Payment(String id, String method, Map<String, String> paymentData) {
         this.id = id;
-        this.method = method;
-        this.status = OrderStatus.WAITING_PAYMENT.getValue();
+        if (PaymentMethod.contains(method)) {
+            this.method = method;
+        } else {
+            throw new IllegalArgumentException("Invalid payment method");
+        }
+        this.status = PaymentStatus.WAITING_PAYMENT.getValue();
         if (paymentData.isEmpty()) {
             throw new IllegalArgumentException("Payment data cannot be empty");
         } else {
@@ -27,7 +32,7 @@ public class Payment {
 
     public Payment(String id, String method, Map<String, String> paymentData, String status) {
         this(id, method, paymentData);
-        if (OrderStatus.contains(status)) {
+        if (PaymentStatus.contains(status)) {
             this.status = status;
         } else {
             throw new IllegalArgumentException("Invalid status");
@@ -35,7 +40,7 @@ public class Payment {
     }
 
     public void setStatus(String status) {
-        if (OrderStatus.contains(status)) {
+        if (PaymentStatus.contains(status)) {
             this.status = status;
         } else {
             throw new IllegalArgumentException("Invalid status");
